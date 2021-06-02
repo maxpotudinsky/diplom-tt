@@ -10,14 +10,16 @@ use App\RoleTask;
 use App\Task;
 use App\Http\Requests\TaskRequest;
 use App\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 
 class TaskController extends Controller
 {
-    public function upd($task_id, $cell_id)
+    public function changeStatus(Request $request)
     {
-        Task::find($task_id)->update(['status_id' => $cell_id]);
+//        dd($request);
+        Task::find($request->taskId)->update(['status_id' => $request->statusId]);
 
         return response(['status' => true]);
     }
@@ -58,6 +60,10 @@ class TaskController extends Controller
             'importance' => $request->importance,
             'project_id' => $request->project,
         ]);
+
+//        $executorId = Role::where('name', 'Исполнитель')->value('id');
+//        dd($executorId);
+//        $task->roles()->sync([$executorId]);
 
         RoleTask::where('task_id', '=', $id)->first()->update([
             'user_id' => $request->executor,
@@ -161,6 +167,7 @@ class TaskController extends Controller
         }
 
         return redirect::route('tasks.index')->with('message-success', 'Задача успешно добавлена!');
+//        return redirect(session('links')[2])->withInput();
     }
 
     public function create()

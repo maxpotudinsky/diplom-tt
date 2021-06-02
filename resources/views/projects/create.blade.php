@@ -22,7 +22,9 @@
                     <form action="{{route('projects.store')}}" method="post">
                         @csrf
                         @if ($errors->any())
-                            <div class="alert alert-danger">
+                            <div class="alert alert-danger alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                <h6><i class="icon fas fa-exclamation-triangle"></i> Внимание!</h6>
                                 <ul>
                                     @foreach ($errors->all() as $error)
                                         <li>{{ $error }}</li>
@@ -36,7 +38,7 @@
                         </div>
                         <div class="form-group">
                             <label for="budget" class="form-label">Бюджет (в ч/ч)</label>
-                            <input type="number" class="form-control{{($errors->first('budget') ? " border-danger" : "")}}" id="budget" name="budget" required min="1">
+                            <input type="text" class="form-control{{($errors->first('budget') ? " border-danger" : "")}}" id="budget" name="budget" required>
                         </div>
                         <div class="form-group">
                             <label for="text">Описание</label>

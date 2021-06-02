@@ -3,12 +3,13 @@
 This is a starter template page. Use this page to start your new project from
 scratch. This page gets rid of all links and provides the needed markup only.
 -->
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="utf-8">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Task Tracker | @yield('title')</title>
+    <link rel="shortcut icon" href="/img/logo.png" type="image/png">
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
@@ -29,14 +30,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="/plugins/bootstrap/js/bootstrap.bundle.min.js" defer></script>
     <!-- AdminLTE App -->
     <script src="/dist/js/adminlte.min.js" defer></script>
-{{--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>--}}
-    <script src="/js/main.js" defer></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="/dist/js/demo.js" defer></script>
 
-{{--    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">--}}
-{{--    <link rel="stylesheet" href="/resources/demos/style.css">--}}
-{{--    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>--}}
-{{--    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" defer></script>--}}
-
+    <script src="/js/cards.js" defer></script>
+    <script src="/js/comments.js" defer></script>
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -61,15 +59,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     </li>
                 @endif
             @else
-                <li class="nav-item d-none d-sm-inline-block">
-                    <a href="{{route('tasks.index')}}" class="nav-link">Задачи</a>
-                </li>
-                <li class="nav-item d-none d-sm-inline-block">
-                    <a href="{{route('projects.index')}}" class="nav-link">Проекты</a>
-                </li>
-                <li class="nav-item d-none d-sm-inline-block">
-                    <a href="{{route('users.index')}}" class="nav-link">Пользователи</a>
-                </li>
+                @if(Auth::check() && Auth::user()->admin)
+                    <li class="nav-item d-none d-sm-inline-block">
+                        <a href="{{route('tasks.index')}}" class="nav-link">Задачи</a>
+                    </li>
+                    <li class="nav-item d-none d-sm-inline-block">
+                        <a href="{{route('projects.index')}}" class="nav-link">Проекты</a>
+                    </li>
+                    <li class="nav-item d-none d-sm-inline-block">
+                        <a href="{{route('users.index')}}" class="nav-link">Пользователи</a>
+                    </li>
+                @endif
                 <li class="nav-item d-none d-sm-inline-block">
                     <a href="{{route('logout')}}" class="nav-link" onclick="event.preventDefault();
                     document.getElementById('logout-form').submit();">{{ __('Выйти') }}</a>
@@ -77,24 +77,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         @csrf
                     </form>
                 </li>
-{{--                <li class="nav-item dropdown">--}}
-{{--                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"--}}
-{{--                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>--}}
-{{--                        {{ Auth::user()->name }}--}}
-{{--                    </a>--}}
-
-{{--                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">--}}
-{{--                        <a class="dropdown-item" href="{{ route('logout') }}"--}}
-{{--                           onclick="event.preventDefault();--}}
-{{--                                                                 document.getElementById('logout-form').submit();">--}}
-{{--                            Выйти--}}
-{{--                        </a>--}}
-
-{{--                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">--}}
-{{--                            @csrf--}}
-{{--                        </form>--}}
-{{--                    </div>--}}
-{{--                </li>--}}
             @endguest
         </ul>
 
@@ -229,9 +211,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
         <!-- Brand Logo -->
         <a href="{{ url('/') }}" class="brand-link">
-            <img src="/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+            <img src="/img/logo.png" alt="logo" class="brand-image img-circle elevation-3"
                  style="opacity: .8">
-            <span class="brand-text font-weight-light">AdminLTE 3</span>
+            <span class="brand-text font-weight-light">Task Tracker</span>
         </a>
 
         <!-- Sidebar -->
@@ -273,35 +255,40 @@ scratch. This page gets rid of all links and provides the needed markup only.
                          with font-awesome or any other icon font library -->
                     <li class="nav-item menu-open">
                         <a href="#" class="nav-link active">
-                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <i class="nav-icon fas fa-compass"></i>
                             <p>
-                                Starter Pages
+                                Навигация
                                 <i class="right fas fa-angle-left"></i>
                             </p>
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="#" class="nav-link active">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Active Page</p>
+                                <a href="{{route('home')}}" class="nav-link active">
+                                    <i class="fas fa-home nav-icon"></i>
+                                    <p>Главная</p>
                                 </a>
                             </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Inactive Page</p>
-                                </a>
-                            </li>
+                            @if(Auth::check() && Auth::user()->admin)
+                                <li class="nav-item">
+                                    <a href="{{route('tasks.index')}}" class="nav-link">
+                                        <i class="fas fa-tasks nav-icon"></i>
+                                        <p>Задачи</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{route('projects.index')}}" class="nav-link">
+                                        <i class="fas fa-project-diagram nav-icon"></i>
+                                        <p>Проекты</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{route('users.index')}}" class="nav-link">
+                                        <i class="fas fa-users nav-icon"></i>
+                                        <p>Пользователи</p>
+                                    </a>
+                                </li>
+                            @endif
                         </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="nav-icon fas fa-th"></i>
-                            <p>
-                                Simple Link
-                                <span class="right badge badge-danger">New</span>
-                            </p>
-                        </a>
                     </li>
                 </ul>
             </nav>
@@ -320,12 +307,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <h1 class="m-0">@yield('title')</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
-                            <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="{{route('home')}}">Главная</a></li>
-                                @if(isset($breadcrumbs))
-                                    @include('components.breadcrumbs', $breadcrumbs)
-                                @endif
-                            </ol>
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="{{route('home')}}">Главная</a></li>
+                            @if(isset($breadcrumbs))
+                                @include('components.breadcrumbs', $breadcrumbs)
+                            @endif
+                        </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
             </div><!-- /.container-fluid -->
@@ -341,10 +328,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Control Sidebar -->
     <aside class="control-sidebar control-sidebar-dark">
         <!-- Control sidebar content goes here -->
-        <div class="p-3">
-            <h5>Title</h5>
-            <p>Sidebar content</p>
-        </div>
     </aside>
     <!-- /.control-sidebar -->
 
@@ -352,7 +335,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <footer class="main-footer">
         <!-- To the right -->
         <div class="float-right d-none d-sm-inline">
-            Anything you want
+            <strong>Task Tracker 2021</strong>
         </div>
         <!-- Default to the left -->
         <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.

@@ -10,6 +10,6 @@ class Role extends Model
 
     public function tasks()
     {
-        return $this->belongsToMany(Task::class, 'roles_tasks', 'role_id', 'task_id');
+        return $this->belongsToMany(Task::class, 'roles_tasks', 'role_id', 'task_id')->withPivot('user_id');
     }
 }

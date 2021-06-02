@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UserRequest;
+use App\Http\Requests\UserUpdateRequest;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -33,15 +34,22 @@ class UserController extends Controller
         }
     }
 
-    public function update(UserRequest $request, $id)
+    public function update(UserUpdateRequest $request, $id)
     {
-        User::find($id)->update([
+        $user = User::find($id);
+//dd($request->password);
+        $user->fill([
             'name' => $request->name,
-            'email' => $request->email,
+//            'email' => $request->email,
             'phone' => $request->phone,
-//            'password' => Hash::make($request->password),
-        ]);
-        return redirect::route('users.index')->with('message-success', 'Пользователь успешно отредактирован!');
+        ])->save();
+        if (Hash::check($request->password, $user->password)) {
+            $user->fill([
+                'password' => Hash::make($request->new_password)
+            ])->save();
+
+            return redirect::route('users.index')->with('message-success', 'Пользователь успешно отредактирован!');
+        }
     }
 
     public function show($id)

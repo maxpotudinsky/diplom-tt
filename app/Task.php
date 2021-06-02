@@ -17,12 +17,17 @@ class Task extends Model
 
     public function taskStatus()
     {
-        return $this->hasMany(TaskStatus::class, 'id');
+        return $this->belongsTo(TaskStatus::class, 'status_id');
     }
 
     public function project()
     {
         return $this->belongsTo(Project::class, 'project_id');
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class, 'task_id');
     }
 
     public function files()
@@ -37,6 +42,6 @@ class Task extends Model
 
     public function roles()
     {
-        return $this->belongsToMany(Role::class, 'roles_tasks', 'task_id', 'role_id');
+        return $this->belongsToMany(Role::class, 'roles_tasks', 'task_id', 'role_id')->withPivot('user_id');
     }
 }

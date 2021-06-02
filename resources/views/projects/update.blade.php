@@ -23,7 +23,9 @@
                         @csrf
                         <input type="hidden" name="_method" value="put" />
                         @if ($errors->any())
-                            <div class="alert alert-danger">
+                            <div class="alert alert-danger alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                <h6><i class="icon fas fa-exclamation-triangle"></i> Внимание!</h6>
                                 <ul>
                                     @foreach ($errors->all() as $error)
                                         <li>{{ $error }}</li>

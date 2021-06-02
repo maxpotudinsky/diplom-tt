@@ -22,7 +22,9 @@
                     <form action="{{route('users.store')}}" method="post">
                         @csrf
                         @if ($errors->any())
-                            <div class="alert alert-danger">
+                            <div class="alert alert-danger alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                <h6><i class="icon fas fa-exclamation-triangle"></i> Внимание!</h6>
                                 <ul>
                                     @foreach ($errors->all() as $error)
                                         <li>{{ $error }}</li>
@@ -51,6 +53,12 @@
                             <input type="password"
                                    class="form-control{{($errors->first('password') ? " border-danger" : "")}}"
                                    id="password" name="password" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password_confirmation" class="form-label">Повтор пароля</label>
+                            <input type="password"
+                                   class="form-control{{($errors->first('password_confirmation') ? " border-danger" : "")}}"
+                                   id="password_confirmation" name="password_confirmation" required>
                         </div>
                         <div class="form-group">
                             <input type="submit" class="mb-3 float-end btn btn-warning" value="Добавить пользователя">

@@ -8,8 +8,8 @@ class TaskStatus extends Model
 {
     protected $table = 'task_status';
 
-    public function task()
+    public function tasks()
     {
-        return $this->belongsTo(Task::class, 'status_id');
+        return $this->hasMany(Task::class, 'status_id');
     }
 }

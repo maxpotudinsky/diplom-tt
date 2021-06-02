@@ -9,8 +9,8 @@ class TaskRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|max:255',
-            'text' => 'required|max:255',
+            'name' => 'required|string|max:50',
+            'text' => 'required|string|max:255',
             'time' => 'required|numeric',
             'fact_time' => 'required|numeric',
             'price' => 'required|numeric|min:1',

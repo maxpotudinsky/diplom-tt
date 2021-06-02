@@ -13,7 +13,7 @@ class User extends Authenticatable
     protected $table = 'users';
 
     protected $fillable = [
-        'name', 'email', 'phone', 'company_id', 'password',
+        'name', 'email', 'phone', 'company_id', 'password', 'admin',
     ];
 
     protected $hidden = [
@@ -27,5 +27,10 @@ class User extends Authenticatable
     public function company()
     {
         return $this->belongsTo(Company::class, 'company_id');
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class, 'user_id');
     }
 }

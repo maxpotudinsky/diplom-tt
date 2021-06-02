@@ -1,24 +1,13 @@
-// let getTasks = function () {
-//     $.ajax({
-//         type: 'GET',
-//         url: "/home/get",
-//         success: function (msgs) {
+// let projects = $('#projects');
 //
-//             // msgs.forEach(msg => console.log(msg));
-//             msgs.forEach((msg) => {
-//                 $('.ajaxCell').html(msg.id);
-//                 console.log(msg.id);
-//             });
-//
-//         },
+// var refresh = setInterval(function (event) {
+//     $.get('/projects/get', function (response) {
+//         projects.html(response);
+//         changeCards();
 //     });
-// }
+// }, 1000);
 //
-// if($('*').is('.ajaxCell')){
-//     getTasks();
-//     setInterval(getTasks, 1000);
-// }
-
+// function changeCards() {
 const cards = document.querySelectorAll('.js-card');
 const cells = document.querySelectorAll('.js-cell');
 
@@ -42,7 +31,7 @@ for (let i = 0; i < cards.length; i++) {
         }, 0);
     })
 
-    for (let j = 0; j < cells.length; j ++) {
+    for (let j = 0; j < cells.length; j++) {
         const cell = cells[j];
 
         cell.addEventListener('dragover', function (e) {
@@ -60,21 +49,18 @@ for (let i = 0; i < cards.length; i++) {
 
         cell.addEventListener('drop', function (e) {
             console.log('Колонка ' + cell.id);
-            this.append(draggedCard);
+            this.appendChild(draggedCard);
             this.style.backgroundColor = 'rgba(0, 0, 0, 0)';
             $.ajax({
                 type: 'POST',
-                // url: "/tasks/" + draggedCard.id + "/edit/",
-                url: "/tasks/upd/" + draggedCard.id + "/" + cell.id,
-                // data: {cell: this.id},
+                // url: '/tasks/' + draggedCard.id + '/status/' + cell.id,
+                url: '/tasks/change',
+                data: {taskId: draggedCard.id, statusId: cell.id},
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
-                },
-                // success: function () {
-                //     $('#text').val('');
-                //     getMessages();
-                // }
+                }
             });
         });
     }
 }
+// }
