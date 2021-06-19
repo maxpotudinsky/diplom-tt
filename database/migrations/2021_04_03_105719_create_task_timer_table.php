@@ -13,8 +13,6 @@ class CreateTaskTimerTable extends Migration
             $table->integer('time');
             $table->foreignId('user_id');
             $table->foreignId('task_id');
-            $table->foreignId('project_id');
-            $table->foreignId('company_id');
             $table->timestamps();
         });
     }

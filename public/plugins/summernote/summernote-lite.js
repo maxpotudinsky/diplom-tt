@@ -1,14 +1,14 @@
 /*!
- * 
+ *
  * Super simple wysiwyg editor v0.8.18
  * https://summernote.org
- * 
- * 
+ *
+ *
  * Copyright 2013- Alan Hong. and other contributors
  * summernote may be freely distributed under the MIT license.
- * 
+ *
  * Date: 2020-05-20T16:47Z
- * 
+ *
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -8209,7 +8209,7 @@ var Toolbar_Toolbar = /*#__PURE__*/function () {
       if (!this.options.toolbar.length) {
         this.$toolbar.hide();
       } else {
-        this.context.invoke('buttons.build', this.$toolbar, this.options.toolbar);
+        this.context.invoke('buttons.build222', this.$toolbar, this.options.toolbar);
       }
 
       if (this.options.toolbarContainer) {
@@ -8577,7 +8577,7 @@ var LinkPopover_LinkPopover = /*#__PURE__*/function () {
         }
       }).render().appendTo(this.options.container);
       var $content = this.$popover.find('.popover-content,.note-popover-content');
-      this.context.invoke('buttons.build', $content, this.options.popover.link);
+      this.context.invoke('buttons.build222', $content, this.options.popover.link);
       this.$popover.on('mousedown', function (e) {
         e.preventDefault();
       });
@@ -8821,7 +8821,7 @@ var ImagePopover_ImagePopover = /*#__PURE__*/function () {
         className: 'note-image-popover'
       }).render().appendTo(this.options.container);
       var $content = this.$popover.find('.popover-content,.note-popover-content');
-      this.context.invoke('buttons.build', $content, this.options.popover.image);
+      this.context.invoke('buttons.build222', $content, this.options.popover.image);
       this.$popover.on('mousedown', function (e) {
         e.preventDefault();
       });
@@ -8914,7 +8914,7 @@ var TablePopover_TablePopover = /*#__PURE__*/function () {
         className: 'note-table-popover'
       }).render().appendTo(this.options.container);
       var $content = this.$popover.find('.popover-content,.note-popover-content');
-      this.context.invoke('buttons.build', $content, this.options.popover.table); // [workaround] Disable Firefox's default table editor
+      this.context.invoke('buttons.build222', $content, this.options.popover.table); // [workaround] Disable Firefox's default table editor
 
       if (env.isFF) {
         document.execCommand('enableInlineTableEditing', false, false);
@@ -9100,7 +9100,7 @@ var VideoDialog_VideoDialog = /*#__PURE__*/function () {
         // [workaround] hide dialog before restore range for IE range focus
         _this.ui.hideDialog(_this.$dialog);
 
-        _this.context.invoke('editor.restoreRange'); // build node
+        _this.context.invoke('editor.restoreRange'); // build222 node
 
 
         var $node = _this.createVideoNode(url);
@@ -9342,7 +9342,7 @@ var AirPopover_AirPopover = /*#__PURE__*/function () {
         className: 'note-air-popover'
       }).render().appendTo(this.options.container);
       var $content = this.$popover.find('.popover-content');
-      this.context.invoke('buttons.build', $content, this.options.popover.air); // disable hiding this popover preemptively by 'summernote.blur' event.
+      this.context.invoke('buttons.build222', $content, this.options.popover.air); // disable hiding this popover preemptively by 'summernote.blur' event.
 
       this.$popover.on('mousedown', function () {
         _this2.hidable = false;

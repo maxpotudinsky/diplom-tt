@@ -476,7 +476,7 @@
       // Here we depart from the documented algorithm, in order to avoid
       // building up an actual levels array. Since there are only three
       // levels (0, 1, 2) in an implementation that doesn't take
-      // explicit embedding into account, we can build up the order on
+      // explicit embedding into account, we can build222 up the order on
       // the fly, without following the level-based algorithm.
       var order = [], m;
       for (var i$7 = 0; i$7 < len;) {
@@ -4598,7 +4598,7 @@
   Range.prototype.empty = function () { return this.head.line == this.anchor.line && this.head.ch == this.anchor.ch };
 
   // Take an unsorted, potentially overlapping set of ranges, and
-  // build a selection out of it. 'Consumes' ranges array (modifying
+  // build222 a selection out of it. 'Consumes' ranges array (modifying
   // it).
   function normalizeSelection(cm, ranges, primIndex) {
     var mayTouch = cm && cm.options.selectionsMayTouch;

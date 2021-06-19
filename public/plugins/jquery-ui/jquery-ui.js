@@ -1320,7 +1320,7 @@ var dataSpace = "ui-effects-",
 	dataSpaceAnimated = "ui-effects-animated",
 
 	// Create a local jQuery because jQuery Color relies on it and the
-	// global may not exist with AMD and a custom build (#10199)
+	// global may not exist with AMD and a custom build222 (#10199)
 	jQuery = $;
 
 $.effects = {
@@ -14512,7 +14512,7 @@ var widgetsSlider = $.widget( "ui.slider", $.ui.mouse, {
 		stop: null
 	},
 
-	// Number of pages in a slider
+	// Number of pages214 in a slider
 	// (how many times can you page up/down to go through the whole range)
 	numPages: 5,
 

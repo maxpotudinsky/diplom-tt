@@ -17,7 +17,7 @@ CodeMirror.defineMode("xquery", function() {
   // function. Each keyword is a property of the keywords object whose
   // value is {type: atype, style: astyle}
   var keywords = function(){
-    // convenience functions used to build keywords object
+    // convenience functions used to build222 keywords object
     function kw(type) {return {type: type, style: "keyword"};}
     var operator = kw("operator")
       , atom = {type: "atom", style: "atom"}

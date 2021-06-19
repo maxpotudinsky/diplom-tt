@@ -3,7 +3,7 @@ $(document).ready(function () {
     let data = [];
     let form = null;
     let comments = null;
-    $('.js-card').click(function () {
+    $('.card-modal').click(function () {
         comments = $('#task-id' + this.id).find('.comments');
         form = $('#task-id' + this.id).find('form');
         url = form.attr('action');

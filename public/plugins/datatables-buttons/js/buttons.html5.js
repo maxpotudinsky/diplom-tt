@@ -532,7 +532,7 @@ function _excelColWidth( data, col ) {
 	return max > 6 ? max : 6;
 }
 
-// Excel - Pre-defined strings to build a basic XLSX file
+// Excel - Pre-defined strings to build222 a basic XLSX file
 var excelStrings = {
 	"_rels/.rels":
 		'<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'+
@@ -1181,13 +1181,13 @@ DataTable.ext.buttons.excelHtml5 = {
 			addRow( data.header, rowPos );
 			$('row:last c', rels).attr( 's', '2' ); // bold
 		}
-	
+
 		dataStartRow = rowPos;
 
 		for ( var n=0, ie=data.body.length ; n<ie ; n++ ) {
 			addRow( data.body[n], rowPos );
 		}
-	
+
 		dataEndRow = rowPos;
 
 		if ( config.footer && data.footer ) {

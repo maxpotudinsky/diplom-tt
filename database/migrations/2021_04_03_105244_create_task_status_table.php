@@ -13,7 +13,6 @@ class CreateTaskStatusTable extends Migration
             $table->string('name', 50);
             $table->boolean('is_active')->default(1);
             $table->string('code', 50);
-            $table->timestamps();
         });
     }
 

@@ -8,6 +8,23 @@
 // }, 1000);
 //
 // function changeCards() {
+
+// $('.js-cell-color').each(function () {
+//
+//     $('.js-cell-color').eq(0).addClass('card-secondary');
+//     $('.js-cell-color').eq(1).addClass('card-primary');
+//     $('.js-cell-color').eq(2).addClass('card-warning');
+//     $('.js-cell-color').eq(3).addClass('card-success');
+//
+// });
+
+$('.js-card').hover(function () {
+        $(this).addClass('card-info');
+    }, function () {
+        $(this).removeClass('card-info');
+    }
+);
+
 const cards = document.querySelectorAll('.js-card');
 const cells = document.querySelectorAll('.js-cell');
 
@@ -49,16 +66,27 @@ for (let i = 0; i < cards.length; i++) {
 
         cell.addEventListener('drop', function (e) {
             console.log('Колонка ' + cell.id);
+            if (cell.id == 1) {
+                draggedCard.className = 'card js-card card-outline card-secondary card-modal';
+            }
+            if (cell.id == 2) {
+                draggedCard.className = 'card js-card card-outline card-primary card-modal';
+            }
+            if (cell.id == 3) {
+                draggedCard.className = 'card js-card card-outline card-warning card-modal';
+            }
+            if (cell.id == 4) {
+                draggedCard.className = 'card js-card card-outline card-success card-modal';
+            }
             this.appendChild(draggedCard);
             this.style.backgroundColor = 'rgba(0, 0, 0, 0)';
             $.ajax({
                 type: 'POST',
-                // url: '/tasks/' + draggedCard.id + '/status/' + cell.id,
                 url: '/tasks/change',
                 data: {taskId: draggedCard.id, statusId: cell.id},
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
-                }
+                },
             });
         });
     }

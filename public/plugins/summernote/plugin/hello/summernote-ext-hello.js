@@ -19,7 +19,7 @@
     'hello': function(context) {
       var self = this;
 
-      // ui has renders to build ui elements.
+      // ui has renders to build222 ui elements.
       //  - you can create a button with `ui.button`
       var ui = $.summernote.ui;
 

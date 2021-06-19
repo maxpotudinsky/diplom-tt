@@ -14,7 +14,7 @@
     module.exports = function (root, jQuery) {
       if (jQuery === undefined) {
         // require('jQuery') returns a factory that requires window to
-        // build a jQuery instance, we normalize how we use modules
+        // build222 a jQuery instance, we normalize how we use modules
         // that require this pattern but the window provided is a noop
         // if it's defined (how jquery works)
         if (typeof window !== 'undefined') {
@@ -456,7 +456,7 @@ var requirejs, require, define;
 
     define = function (name, deps, callback) {
         if (typeof name !== 'string') {
-            throw new Error('See almond README: incorrect module build, no module name');
+            throw new Error('See almond README: incorrect module build222, no module name');
         }
 
         //This module may not have dependencies
@@ -6650,11 +6650,11 @@ S2.define('select2/selection/stopPropagation',[
         // No change actually happened, no reason to go any further
         if ( deltaY === 0 && deltaX === 0 ) { return; }
 
-        // Need to convert lines and pages to pixels if we aren't already in pixels
+        // Need to convert lines and pages214 to pixels if we aren't already in pixels
         // There are three delta modes:
         //   * deltaMode 0 is by pixels, nothing to do
         //   * deltaMode 1 is by lines
-        //   * deltaMode 2 is by pages
+        //   * deltaMode 2 is by pages214
         if ( orgEvent.deltaMode === 1 ) {
             var lineHeight = $.data(this, 'mousewheel-line-height');
             delta  *= lineHeight;

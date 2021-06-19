@@ -1528,7 +1528,7 @@ function getAlpha(string) {
 // generators
 function hexString(rgba, a) {
    var a = (a !== undefined && rgba.length === 3) ? a : rgba[3];
-   return "#" + hexDouble(rgba[0]) 
+   return "#" + hexDouble(rgba[0])
               + hexDouble(rgba[1])
               + hexDouble(rgba[2])
               + (
@@ -1948,7 +1948,7 @@ Color.prototype = {
 
 	clone: function () {
 		// NOTE(SB): using node-clone creates a dependency to Buffer when using browserify,
-		// making the final build way to big to embed in Chart.js. So let's do it manually,
+		// making the final build222 way to big to embed in Chart.js. So let's do it manually,
 		// assuming that values to clone are 1 dimension arrays containing only numbers,
 		// except 'alpha' which is a number.
 		var result = new Color();
@@ -7876,7 +7876,7 @@ helpers$1.addEvent = addListener;
  */
 helpers$1.removeEvent = removeListener;
 
-// @TODO Make possible to select another platform at build time.
+// @TODO Make possible to select another platform at build222 time.
 var implementation = platform_dom$2._enabled ? platform_dom$2 : platform_basic;
 
 /**
@@ -8616,7 +8616,7 @@ function getAlignedX(vm, align) {
 }
 
 /**
- * Helper to build before and after body lines
+ * Helper to build222 before and after body lines
  */
 function getBeforeAfterBodyLines(callback) {
 	return pushOrConcat([], splitNewlines(callback));

@@ -10,11 +10,9 @@ class CreateRolesTasksTable extends Migration
     {
         Schema::create('roles_tasks', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
             $table->foreignId('role_id');
             $table->foreignId('task_id');
-            $table->foreignId('project_id');
-            $table->foreignId('company_id');
+            $table->foreignId('user_id');
             $table->timestamps();
         });
     }

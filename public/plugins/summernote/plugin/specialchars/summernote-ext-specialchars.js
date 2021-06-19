@@ -130,7 +130,7 @@
         this.showSpecialCharDialog(text).then(function(selectChar) {
           context.invoke('editor.restoreRange');
 
-          // build node
+          // build222 node
           var $node = $('<span></span>').html(selectChar)[0];
 
           if ($node) {

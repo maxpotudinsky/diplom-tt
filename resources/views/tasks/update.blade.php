@@ -1,7 +1,8 @@
-@extends('layouts.admin')
+@extends('layouts.main')
 
 @section('title', 'Редактирование задачи')
 
+<!-- Хлебные крошки -->
 @php
     $breadcrumbs = [
         [
@@ -16,23 +17,27 @@
 
 @section('content')
     <div class="content">
+        <!-- Обертка контента -->
         <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class="col-lg-12">
-{{--                    {{dd($task->roles->first()->name)}}--}}
+                    <!-- Форма редактирования задачи -->
                     <form action="{{route('tasks.update', $task->id)}}" method="post" enctype="multipart/form-data">
                         @csrf
+                        <!-- Проверка на наличие ошибок при отправке формы -->
                         @if ($errors->any())
                             <div class="alert alert-danger alert-dismissible">
                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                                 <h6><i class="icon fas fa-exclamation-triangle"></i> Внимание!</h6>
                                 <ul>
+                                    <!-- Вывод ошибок при их наличии -->
                                     @foreach ($errors->all() as $error)
                                         <li>{{ $error }}</li>
                                     @endforeach
                                 </ul>
                             </div>
                         @endif
+                        <!-- Поле название -->
                         <div class="form-group">
                             <label for="name" class="form-label">Название</label>
                             <input type="text" value="{{$task->name}}"
@@ -43,6 +48,7 @@
                             <legend>Общее</legend>
                             <div class="row">
                                 <div class="col-sm-4 col-md-4 col-lg-4 col-xl-4">
+                                    <!-- Поле общий (ч/ч) -->
                                     <div class="form-group">
                                         <label for="time" class="form-label">Общий (ч/ч)</label>
                                         <input type="number" value="{{$task->time}}"
@@ -52,8 +58,9 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-4 col-md-4 col-lg-4 col-xl-4">
+                                    <!-- Поле фактический (ч/ч) -->
                                     <div class="form-group">
-                                        <label for="fact_time" class="form-label">Внутренний (ч/ч)</label>
+                                        <label for="fact_time" class="form-label">Фактический (ч/ч)</label>
                                         <input type="number" value="{{$task->fact_time}}"
                                                class="form-control{{($errors->first('fact_time') ? " border-danger" : "")}}"
                                                id="fact_time" name="fact_time" required
@@ -61,19 +68,20 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-4 col-md-4 col-lg-4 col-xl-4">
+                                    <!-- Поле стоимость (руб.) -->
                                     <div class="form-group">
                                         <label for="price" class="form-label">Стоимость (руб.)</label>
                                         <input type="number" value="{{$task->price}}"
                                                class="form-control{{($errors->first('price') ? " border-danger" : "")}}"
                                                id="price" name="price" required
-                                               min="1">
+                                               min="0">
                                     </div>
                                 </div>
                             </div>
                         </fieldset>
                         <div class="row">
-                            {{--                            {{dd($executor->role_id, $customer->role_id)}}--}}
                             <div class="col-sm-4 col-md-4 col-lg-4 col-xl-4">
+                                <!-- Список пользователей для роли исполнитель -->
                                 <div class="form-group">
                                     <label for="executor">Исполнитель:</label>
                                     <select class="form-control" id="executor" name="executor">
@@ -85,6 +93,7 @@
                                 </div>
                             </div>
                             <div class="col-sm-4 col-md-4 col-lg-4 col-xl-4">
+                                <!-- Список проектов текущей компании -->
                                 <div class="form-group">
                                     <label for="project" class="form-label">Проект:</label>
                                     <select class="form-control{{($errors->first('project') ? " border-danger" : "")}}"
@@ -97,6 +106,7 @@
                                 </div>
                             </div>
                             <div class="col-sm-4 col-md-4 col-lg-4 col-xl-4">
+                                <!-- Список пользователей для роли заказчик -->
                                 <div class="form-group">
                                     <label for="customer" class="form-label">Заказчик:</label>
                                     <select class="form-control" id="customer" name="customer">
@@ -113,6 +123,7 @@
                             <legend>Дополнительно</legend>
                             <div class="row">
                                 <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                                    <!-- Поле лимит (ч/ч) -->
                                     <div class="form-group">
                                         <label for="limit" class="form-label">Лимит (ч/ч):</label>
                                         <input type="number" value="{{$task->limit}}"
@@ -122,6 +133,7 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                                    <!-- Поле важность (ч/ч) -->
                                     <div class="form-group">
                                         <label for="importance" class="form-label">Важность:</label>
                                         <select
@@ -138,18 +150,18 @@
                                 </div>
                             </div>
                         </fieldset>
+                            <!-- Поле описание (ч/ч) -->
                         <div class="form-group">
                             <label for="text">Описание</label>
                             <textarea class="form-control{{($errors->first('text') ? " border-danger" : "")}}" rows="5"
                                       id="text" name="text" required>{{$task->text}}</textarea>
                         </div>
+                            <!-- Поле файл (ч/ч) -->
                         <div class="form-group">
-                            <label for="text">Файл</label>
-{{--                            @foreach($task->files as $file)--}}
+                            <label for="file">Файл</label>
                             <input type="file" class="form-control" id="file" name="files[]" multiple>
-{{--                            value="{{$file->name}}"--}}
-{{--                            @endforeach--}}
                         </div>
+                            <!-- Кнопка обновить задачу -->
                         <div class="form-group">
                             <input type="submit" class="mb-3 float-end btn btn-warning" value="Обновить задачу">
                         </div>

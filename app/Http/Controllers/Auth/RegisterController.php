@@ -55,6 +55,7 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'min:3', 'max:255'],
             'email' => ['required', 'string', 'email', 'unique:users', 'min:6', 'max:255'],
             'phone' => ['required', 'digits:11'],
+            'company' => ['required', 'string', 'max:10'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
@@ -67,7 +68,6 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-
         $company = Company::create([
             'name' => $data['company'],
             'code' => Str::random(50),

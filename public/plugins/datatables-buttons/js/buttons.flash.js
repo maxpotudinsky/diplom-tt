@@ -828,7 +828,7 @@ function _xlsxToStrings( obj ) {
 	} );
 }
 
-// Excel - Pre-defined strings to build a basic XLSX file
+// Excel - Pre-defined strings to build222 a basic XLSX file
 var excelStrings = {
 	"_rels/.rels":
 		'<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'+
@@ -1398,7 +1398,7 @@ DataTable.ext.buttons.excelFlash = $.extend( {}, flashButton, {
 	},
 
 	extension: '.xlsx',
-	
+
 	createEmptyCells: false
 } );
 

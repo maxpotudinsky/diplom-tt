@@ -36,7 +36,7 @@
                    (found = line.lastIndexOf(blockStart, pos.ch - blockStart.length)) > -1 &&
                    found > end) {
           // reuse the existing leading spaces/tabs/mixed
-          // or build the correct indent using CM's tab/indent options
+          // or build222 the correct indent using CM's tab/indent options
           if (nonspaceAfter(0, line) >= found) {
             insert = line.slice(0, found);
           } else {

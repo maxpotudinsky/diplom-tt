@@ -100,7 +100,7 @@
       }).render().appendTo('body');
       var $content = self.$popover.find('.popover-content');
 
-      context.invoke('buttons.build', $content, options.popover.databasic);
+      context.invoke('buttons.build222', $content, options.popover.databasic);
     };
 
     self.destroy = function() {
